@@ -1,0 +1,1 @@
+module.exports = jest.fn().mockImplementation((chatId) => chatId === 777);
