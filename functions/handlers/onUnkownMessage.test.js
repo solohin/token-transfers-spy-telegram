@@ -6,13 +6,12 @@ jest.mock('../components/db.js');
 const assert = require('chai').assert;
 //modules
 const onMessage = require('../components/onMessage');
-const db = require('../components/db');
 const sendTelegramMessage = require('../components/sendTelegramMessage.js');
 //init
 
 const CHAT_ID = 12333;
 
-describe('/start message', () => {
+describe('Unjnown message', () => {
     beforeEach(() => {
         sendTelegramMessage.mockClear();
     });

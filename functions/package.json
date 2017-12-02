@@ -12,6 +12,7 @@
     "etherscan-api": "^3.0.11",
     "firebase-admin": "~5.4.2",
     "firebase-functions": "^0.7.1",
+    "googleapis": "^23.0.0",
     "js-sha3": "^0.6.1",
     "object.values": "^1.0.4",
     "request": "^2.83.0",
@@ -19,6 +20,7 @@
   },
   "private": true,
   "devDependencies": {
-    "chai": "^4.1.2"
+    "chai": "^4.1.2",
+    "jest": "^21.2.1"
   }
 }
