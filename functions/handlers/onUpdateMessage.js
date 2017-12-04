@@ -6,12 +6,14 @@ const getSpreadsheetData = require('../components/getSpreadsheetData');
 const sendTelegramMessage = require('../components/sendTelegramMessage');
 const db = require('../components/db');
 const isAddress = require('../components/isAddress');
+const getDecimals = require('../components/getDecimals');
 //init
 module.exports = function (chatId, text) {
     const oldWalletsPromise = db.get('/watch');
-    const sheetDataPromise = getSpreadsheetData(config.tableID, encodeURIComponent('Токены') + 'A1:C');
+    const sheetDataPromise = getSpreadsheetData(config.tableID, encodeURIComponent('Токены') + '!A1:C');
     return Promise.all([oldWalletsPromise, sheetDataPromise]).then(([dbData, sheetData]) => {
-        let toDelete = Object.keys(dbData);
+        console.log([dbData, sheetData]);
+        let toDelete = Object.keys(dbData||{});
         const toUpdate = {};
         for (let sheetRow of sheetData) {
             const address = (sheetRow[0] || '').replace(/[^0-9a-zA-Z\.]+/g, '');
@@ -31,7 +33,12 @@ module.exports = function (chatId, text) {
         }
 
         const deletePromises = toDelete.map(addressToDelete => db.set(`/watch/${addressToDelete}`, null));
-        const updatePromises = Object.keys(toUpdate).map(address => db.update(`/watch/${address}`, toUpdate[address]));
+        const updatePromises = Object.keys(toUpdate).map(address => {
+            return getDecimals(address).then(decimals=>{
+                toUpdate[address].decimals = decimals;
+                return db.update(`/watch/${address}`, toUpdate[address])
+            });
+        });
 
         //сообщение
         let message = `Всего на отслеживании токенов: ${updatePromises.length}\n`;

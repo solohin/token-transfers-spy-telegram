@@ -9,6 +9,7 @@
     "logs": "firebase functions:log"
   },
   "dependencies": {
+    "abi-decoder": "^1.0.9",
     "etherscan-api": "^3.0.11",
     "firebase-admin": "~5.4.2",
     "firebase-functions": "^0.7.1",

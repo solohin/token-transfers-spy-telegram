@@ -2,6 +2,7 @@
 jest.mock('../components/getSpreadsheetData.js');
 jest.mock('../components/sendTelegramMessage.js');
 jest.mock('../components/isAdmin.js');
+jest.mock('../components/getDecimals.js');
 jest.mock('../components/db.js');
 //libs
 const assert = require('chai').assert;
@@ -39,16 +40,19 @@ describe('Update message', () => {
 
             assert.strictEqual('/watch/0x00c7122633a4ef0bc72f7d02456ee2b11e97561e', calls[0][0]);
             assert.strictEqual('0x00c7122633a4ef0bc72f7d02456ee2b11e97561e', calls[0][1].address);
+            assert.strictEqual(10, calls[0][1].decimals);
             assert.strictEqual('RDN 50m', calls[0][1].name);
             assert.strictEqual(50000000, calls[0][1].minAmount);
 
             assert.strictEqual('/watch/0x519475b31653e46d20cd09f9fdcf3b12bdacb4f5', calls[1][0]);
+            assert.strictEqual(20, calls[1][1].decimals);
             assert.strictEqual('0x519475b31653e46d20cd09f9fdcf3b12bdacb4f5', calls[1][1].address);
             assert.strictEqual('VIU ten', calls[1][1].name);
             assert.strictEqual(10, calls[1][1].minAmount);
 
             assert.strictEqual('/watch/0xab95e915c123fded5bdfb6325e35ef5515f1ea69', calls[2][0]);
             assert.strictEqual('0xab95e915c123fded5bdfb6325e35ef5515f1ea69', calls[2][1].address);
+            assert.strictEqual(30, calls[2][1].decimals);
             assert.strictEqual('XENON 1.12m', calls[2][1].name);
             assert.strictEqual(1120000, calls[2][1].minAmount);
         });

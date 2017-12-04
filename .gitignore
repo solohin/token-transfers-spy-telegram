@@ -3,3 +3,5 @@ functions/config.js
 .firebaserc
 .idea/
 firebase-debug.log
+functions/google_service_account.json
+functions/debug.js

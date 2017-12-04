@@ -18,3 +18,9 @@ exports.telegramWebhook = functions.https.onRequest((request, response) => {
         response.send("ok");
     });
 });
+
+process.on('unhandledRejection', (reason, p) => {
+    console.error('Unhandled Rejection at: Promise', p);
+    console.error('Unhandled Rejection at: Reason', reason);
+    // application specific logging, throwing an error, or other logic here
+});
