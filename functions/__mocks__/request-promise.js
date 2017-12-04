@@ -1,6 +1,6 @@
 "use strict";
 const mock = jest.fn().mockImplementation(({uri, method, json, body, resolveWithFullResponse}) => {
-    Promise.resolve({body: null});
+    return Promise.resolve({body: null});
 });
 mock.setURLs = urls => {
     mock.mockImplementation(({uri}) => {
