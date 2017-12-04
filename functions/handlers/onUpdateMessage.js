@@ -12,7 +12,7 @@ module.exports = function (chatId, text) {
     const oldWalletsPromise = db.get('/watch');
     const sheetDataPromise = getSpreadsheetData(config.tableID, encodeURIComponent('Токены') + '!A1:C');
     return Promise.all([oldWalletsPromise, sheetDataPromise]).then(([dbData, sheetData]) => {
-        console.log([dbData, sheetData]);
+
         let toDelete = Object.keys(dbData||{});
         const toUpdate = {};
         for (let sheetRow of sheetData) {

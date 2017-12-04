@@ -60,11 +60,13 @@ describe('Get new transactions', () => {
         assert.strictEqual("0xtxHash1", result[0].hash);
         assert.strictEqual("0xfrom1", result[0].from);
         assert.strictEqual("0x7af1fd9ac06c3776a29c3dfc5668c9a1169c8bfc", result[0].to);
+        assert.strictEqual("14685000000000000000", result[0].amount);
 
         assert.strictEqual(7777, result[1].blockNumber);
         assert.strictEqual("0xtxHash2", result[1].hash);
         assert.strictEqual("0xfrom2", result[1].from);
         assert.strictEqual("0x7f6d0233ba26d199845a93337017fa35501eebf2", result[1].to);
+        assert.strictEqual("5000000000000000000000", result[1].amount);
     });
 })
 ;

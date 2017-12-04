@@ -1,6 +1,6 @@
 "use strict";
 //libs
-const abiDecoder = require('abi-decoder');
+const abiDecoder = require('../components/abiDecoder');
 const request = require('request-promise');
 //modules
 const testABI = require('./defaultABI');
@@ -21,12 +21,14 @@ module.exports = function ({fromBlock, address, lastTxHash}) {
 
             if (decoded.name !== 'transfer' || !decoded.params) continue;
             const toParameter = (decoded.params.filter(param => param.name === '_to')[0] || {}).value;
+            const amountParameter = (decoded.params.filter(param => param.name === '_value')[0] || {}).value;
 
             result.push({
                 blockNumber: parseInt(transaction.blockNumber),
                 to: toParameter,
                 from: transaction.from,
                 hash: transaction.hash,
+                amount: amountParameter,
             });
         }
         return result;
