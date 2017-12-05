@@ -44,7 +44,7 @@ describe('Get new transactions', () => {
         };
         request.setURLs(urls);
 
-        getNewTransactions({fromBlock: 7777, address: '0xTokenAddress', lastTxHash: '0xOldTxHash'}).then(data => {
+        getNewTransactions({lastBlock: 7777, address: '0xTokenAddress', lastTxHash: '0xOldTxHash'}).then(data => {
             result = data;
             done();
         }).catch(e => {

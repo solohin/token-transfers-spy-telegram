@@ -8,9 +8,9 @@ const config = require('../config');
 //init
 abiDecoder.addABI(testABI);
 
-module.exports = function ({fromBlock, address, lastTxHash}) {
+module.exports = function ({lastBlock, address, lastTxHash}) {
     return request({
-        uri: `http://api.etherscan.io/api?module=account&action=txlist&address=${address}&startblock=${fromBlock}&endblock=99999999&sort=desc&apikey=${config.etherscanAPIKey}`,
+        uri: `http://api.etherscan.io/api?module=account&action=txlist&address=${address}&startblock=${lastBlock}&endblock=99999999&sort=desc&apikey=${config.etherscanAPIKey}`,
     }).then(({body}) => {
         const transactions = body.result;
         const result = [];
