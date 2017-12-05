@@ -4,9 +4,8 @@ const mock = jest.fn().mockImplementation(({uri, method, json, body, resolveWith
 });
 mock.setURLs = urls => {
     mock.mockImplementation(({uri}) => {
-        let body = null;
         if (urls[uri]) {
-            return Promise.resolve({body: urls[uri]})
+            return Promise.resolve(urls[uri])
         }
         return Promise.reject({statusCode: 404});
     });
