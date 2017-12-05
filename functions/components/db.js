@@ -6,5 +6,5 @@ const admin = require('firebase-admin');
 module.exports = {
     set: (path, val) => admin.database().ref(path).set(val),
     get: (path) => admin.database().ref(path).once('value').then(payload => payload.val()),
-    update: (path, val) => admin.database().ref(path).set(val),
+    update: (path, val) => admin.database().ref(path).update(val),
 };

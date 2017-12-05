@@ -25,9 +25,11 @@ const handleExistingAddress = ({lastBlock, address, lastTxHash, name, decimals, 
             }))
         }
         for (let txn of txns) {
-            if(txn.hash === lastTxHash) break;
             const convertedAmount = txn.amount / parseInt('1' + '0'.repeat(decimals));
-            if (convertedAmount < parseFloat(minAmount)) continue;
+            if (convertedAmount < parseFloat(minAmount)) {
+                console.log(`${convertedAmount} lower than ${minAmount}. Skip`);
+                continue;
+            }
 
             const text = `${convertedAmount} ${name}
 ${txn.from} -> ${txn.to}

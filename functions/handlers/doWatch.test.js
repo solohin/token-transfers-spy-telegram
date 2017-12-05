@@ -101,21 +101,7 @@ describe('Normal', () => {
                     from: '0xnewTX2Sender',
                     hash: '0xnewTX2',
                     amount: 510000,
-                },
-                {
-                    blockNumber: 1111,
-                    to: '0xoldTXReceiver',
-                    from: '0xoldTXSender',
-                    hash: '0xFirstOldTx',
-                    amount: 510000,
-                },
-                {
-                    blockNumber: 1111,
-                    to: '0xoldTXReceiver',
-                    from: '0xoldTXSender',
-                    hash: '0xSecondOldTx',
-                    amount: 510000,
-                },
+                }
             ]
         );
 

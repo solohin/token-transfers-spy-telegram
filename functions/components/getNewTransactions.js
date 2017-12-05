@@ -11,7 +11,8 @@ abiDecoder.addABI(testABI);
 module.exports = function ({lastBlock, address, lastTxHash}) {
     return request({
         uri: `http://api.etherscan.io/api?module=account&action=txlist&address=${address}&startblock=${lastBlock}&endblock=99999999&sort=desc&apikey=${config.etherscanAPIKey}`,
-    }).then(({body}) => {
+        json:true
+    }).then(body => {
         const transactions = body.result;
         const result = [];
         for (let transaction of transactions) {
@@ -31,6 +32,7 @@ module.exports = function ({lastBlock, address, lastTxHash}) {
                 amount: amountParameter,
             });
         }
+        console.log(`Got ${result.length} new transactions for ${address}`);
         return result;
     });
 };
